@@ -21,3 +21,5 @@ kubectl create secret generic myalertmanager --from-file=alertmanager.yaml=alert
 kubectl get secret -n monitoring 
 
 helm upgrade demo -f values-alertmanager.yaml stable/prometheus-operator -n monitoring
+
+reference URL: https://www.excellarate.com/blogs/configure-alert-manager-for-prometheus-in-kubernetes-aws-eks/
