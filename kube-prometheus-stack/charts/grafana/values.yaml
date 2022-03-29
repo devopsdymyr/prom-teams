@@ -561,19 +561,7 @@ grafana.ini:
     mode: console
   grafana_net:
     url: https://grafana.net
-  auth.azuread:
-    enabled: true
-    name: AzureAD
-    client_id: e030d8bf-6096-49be-b12b-08fa735aedf9
-    client_secret: fPG7Q~Hx0z5cmtseaUEbTlj5QuIDMU2jkv1nV
-    allow_sign_up: true
-    scopes: "openid email profile"
-    auth_url: https://login.microsoftonline.com/0483ae51-a627-466e-a7dd-de2ac7e1238e/oauth2/v2.0/authorize
-    token_url: https://login.microsoftonline.com/0483ae51-a627-466e-a7dd-de2ac7e1238e/oauth2/v2.0/token
-    #allowed_groups: a4a9a963-4ff7-411f-9f47-2cd7d13507ee
-    #allowed_domains: evalueserve.com 
-  server:
-    root_url: https://monitor.apps-evalueserve.com
+
 ## grafana Authentication can be enabled with the following values on grafana.ini
  # server:
       # The full public facing url you use in browser, used for redirects and emails
