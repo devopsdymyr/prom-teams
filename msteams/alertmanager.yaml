@@ -1,0 +1,41 @@
+global:
+  resolve_timeout: 15m
+route:
+  group_by: ['alertname']
+  group_wait: 1m
+  group_interval: 5m
+  repeat_interval: 3h
+  receiver: 'devnull'
+  routes:
+  - receiver: 'prometheus-msteams'
+    matchers:
+    - severity: none
+  - receiver: 'prometheus-msteams'
+    matchers:
+    - severity: info
+    continue: true
+  - receiver: 'prometheus-msteams'
+    matchers:
+    - severity: warning
+    continue: true
+  - receiver: 'prometheus-msteams'
+    matchers:
+    - severity: critical
+    continue: true
+inhibit_rules:
+  - source_match:
+       alertname: "Watchdog"
+    target_match:
+       alertname: "KubeSchedulerDown"
+    equal: [prometheus]
+  - source_match:
+       alertname: "Watchdog"
+    target_match:
+       alertname: "KubeControllerManagerDown"
+    equal: [prometheus]
+receivers:
+- name: devnull
+- name: prometheus-msteams
+  webhook_configs:
+  - url: "http://prometheus-msteams:2000/alertmanager-warning"
+    send_resolved: true

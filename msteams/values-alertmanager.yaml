@@ -1,0 +1,5 @@
+alertmanager:
+  enabled: true
+  alertmanagerSpec:
+    logLevel: debug
+    configSecret: myalertmanager
