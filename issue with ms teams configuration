@@ -1,0 +1,29 @@
+root@ip-10-211-137-49:/# helm upgrade --install demo stable/prometheus-operator -f values-test.yaml -n monitoring
+WARNING: Kubernetes configuration file is group-readable. This is insecure. Location: /root/.kube/config
+WARNING: Kubernetes configuration file is world-readable. This is insecure. Location: /root/.kube/config
+WARNING: This chart is deprecated
+coalesce.go:200: warning: cannot overwrite table with non table for alertmanagerSpec (map[additionalPeers:[] affinity:map[] configMaps:[] containers:[] externalUrl:<nil> image:map[repository:quay.io/prometheus/alertmanager sha: tag:v0.21.0] listenLocal:false logFormat:logfmt logLevel:infonodeSelector:map[] paused:false podAntiAffinity: podAntiAffinityTopologyKey:kubernetes.io/hostname podMetadata:map[] portName:web priorityClassName: replicas:1 resources:map[] retention:120h routePrefix:/ secrets:[] securityContext:map[fsGroup:2000 runAsGroup:2000 runAsNonRoot:true runAsUser:1000] storage:map[] tolerations:[] useExistingSecret:false])
+coalesce.go:200: warning: cannot overwrite table with non table for alertmanagerSpec (map[additionalPeers:[] affinity:map[] configMaps:[] containers:[] externalUrl:<nil> image:map[repository:quay.io/prometheus/alertmanager sha: tag:v0.21.0] listenLocal:false logFormat:logfmt logLevel:infonodeSelector:map[] paused:false podAntiAffinity: podAntiAffinityTopologyKey:kubernetes.io/hostname podMetadata:map[] portName:web priorityClassName: replicas:1 resources:map[] retention:120h routePrefix:/ secrets:[] securityContext:map[fsGroup:2000 runAsGroup:2000 runAsNonRoot:true runAsUser:1000] storage:map[] tolerations:[] useExistingSecret:false])
+Error: UPGRADE FAILED: template: prometheus-operator/templates/prometheus/prometheus.yaml:22:24: executing "prometheus-operator/templates/prometheus/prometheus.yaml" at <.Values.alertmanager.alertmanagerSpec.portName>: can't evaluate field portName in type interface {}
+root@ip-10-211-137-49:/#
+
+
+root@ip-10-211-137-49:/# kubectl get cm prometheus-msteams-config -n monitoring -o yaml
+apiVersion: v1
+data:
+  connectors.yaml: "connectors:\n  - alertmanager-warning: https://jabxgd.com/webhookb2/b2622376-f128-485d-857a-eb6b204f0053@f48c00f2-03b8-4780-864a-6d718d272fcd/IncomingWebhook/bb8a5509e1594a82bf80954a79e613a8/e3f56586-29b4-4cd2-9686-0776f14d7d47\n
+    \ - alertmanager-critical: https://abxgd.com/webhookb2/b2622376-f128-485d-857a-eb6b204f0053@f48c00f2-03b8-4780-864a-6d718d272fcd/IncomingWebhook/882afb42dada4dbf86905e97c468d030/e3f56586-29b4-4cd2-9686-0776f14d7d47
+    \   \n"
+kind: ConfigMap
+metadata:
+  annotations:
+    meta.helm.sh/release-name: msteams
+    meta.helm.sh/release-namespace: monitoring
+  creationTimestamp: "2022-04-13T05:51:45Z"
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  name: prometheus-msteams-config
+  namespace: monitoring
+  resourceVersion: "18730"
+  uid: 436ef02c-744a-42b7-9641-89d61b91213e
+root@ip-10-211-137-49:/#
